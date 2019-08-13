@@ -1,0 +1,1 @@
+{"kind":"KFService","apiVersion":"serving.kubeflow.org/v1alpha1","metadata":{"name":"kf-sklearn","namespace":"default","creationTimestamp":null},"spec":{"default":{"sklearn":{"modelUri":"gs://kfserving-samples/models/sklearn/iris","resources":{"limits":{"cpu":"1","memory":"2Gi"},"requests":{"cpu":"1","memory":"2Gi"}}}}},"status":{"default":{},"canary":{}}}
