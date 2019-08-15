@@ -1,0 +1,166 @@
+typemeta:
+  kind: SeldonDeployment
+  apiversion: machinelearning.seldon.io/v1alpha2
+objectmeta:
+  name: sd-xg
+  generatename: ""
+  namespace: default
+  selflink: ""
+  uid: ""
+  resourceversion: ""
+  generation: 0
+  creationtimestamp: "0001-01-01T00:00:00Z"
+  deletiontimestamp: null
+  deletiongraceperiodseconds: null
+  labels: {}
+  annotations: {}
+  ownerreferences: []
+  initializers: null
+  finalizers: []
+  clustername: ""
+  managedfields: []
+spec:
+  name: sd-xg
+  predictors:
+  - name: default
+    graph:
+      name: sd-xg-default
+      children: []
+      type: null
+      implementation: XGBOOST_SERVER
+      methods: null
+      endpoint: null
+      parameters: []
+      modeluri: gs://seldon-models/xgboost/iris
+      serviceaccountname: ""
+    componentspecs:
+    - metadata:
+        name: ""
+        generatename: ""
+        namespace: ""
+        selflink: ""
+        uid: ""
+        resourceversion: ""
+        generation: 0
+        creationtimestamp: "2019-08-15T14:07:38.764Z"
+        deletiontimestamp: null
+        deletiongraceperiodseconds: null
+        labels: {}
+        annotations: {}
+        ownerreferences: []
+        initializers: null
+        finalizers: []
+        clustername: ""
+        managedfields: []
+      spec:
+        volumes: []
+        initcontainers: []
+        containers:
+        - name: sd-xg-default
+          image: ""
+          command: []
+          args: []
+          workingdir: ""
+          ports: []
+          envfrom: []
+          env: []
+          resources:
+            limits:
+              cpu:
+                format: DecimalSI
+              memory:
+                format: BinarySI
+            requests:
+              cpu:
+                format: DecimalSI
+              memory:
+                format: BinarySI
+          volumemounts: []
+          volumedevices: []
+          livenessprobe: null
+          readinessprobe: null
+          lifecycle: null
+          terminationmessagepath: ""
+          terminationmessagepolicy: ""
+          imagepullpolicy: ""
+          securitycontext: null
+          stdin: false
+          stdinonce: false
+          tty: false
+        restartpolicy: ""
+        terminationgraceperiodseconds: null
+        activedeadlineseconds: null
+        dnspolicy: ""
+        nodeselector: {}
+        serviceaccountname: ""
+        deprecatedserviceaccount: ""
+        automountserviceaccounttoken: null
+        nodename: ""
+        hostnetwork: false
+        hostpid: false
+        hostipc: false
+        shareprocessnamespace: null
+        securitycontext: null
+        imagepullsecrets: []
+        hostname: ""
+        subdomain: ""
+        affinity: null
+        schedulername: ""
+        tolerations: []
+        hostaliases: []
+        priorityclassname: ""
+        priority: null
+        dnsconfig: null
+        readinessgates: []
+        runtimeclassname: null
+        enableservicelinks: null
+      hpaspec: null
+    replicas: 1
+    annotations: {}
+    engineresources:
+      limits: {}
+      requests: {}
+    labels: {}
+    svcorchspec:
+      resources: null
+      env: []
+    traffic: 100
+    explainer:
+      type: ""
+      modeluri: ""
+      serviceaccountname: ""
+      containerspec:
+        name: ""
+        image: ""
+        command: []
+        args: []
+        workingdir: ""
+        ports: []
+        envfrom: []
+        env: []
+        resources:
+          limits: {}
+          requests: {}
+        volumemounts: []
+        volumedevices: []
+        livenessprobe: null
+        readinessprobe: null
+        lifecycle: null
+        terminationmessagepath: ""
+        terminationmessagepolicy: ""
+        imagepullpolicy: ""
+        securitycontext: null
+        stdin: false
+        stdinonce: false
+        tty: false
+      config: {}
+      endpoint: null
+  oauthkey: ""
+  oauthsecret: ""
+  annotations:
+    seldon.io/engine-seldon-log-messages-externally: "true"
+status:
+  state: ""
+  description: ""
+  deploymentstatus: {}
+  servicestatus: {}
