@@ -49,8 +49,6 @@
                 "svcOrchSpec": {},
                 "traffic": 100,
                 "explainer": {
-                    "type": "ANCHOR_TABULAR",
-                    "modelUri": "gs://seldon-models/sklearn/income/explainer",
                     "containerSpec": {
                         "name": "",
                         "resources": {}
@@ -68,9 +66,18 @@
             "income-classifier-default-9e4ec4d": {
                 "replicas": 1,
                 "availableReplicas": 1
+            },
+            "income-classifier-default-explainer": {
+                "replicas": 1,
+                "availableReplicas": 1
             }
         },
         "serviceStatus": {
+            "income-classifier-default-explainer": {
+                "svcName": "income-classifier-default-explainer",
+                "httpEndpoint": "income-classifier-default-explainer.default:9000",
+                "explainerFor": "income-classifier-income-classifier-default"
+            },
             "income-classifier-income-classifier-default": {
                 "svcName": "income-classifier-income-classifier-default",
                 "httpEndpoint": "income-classifier-income-classifier-default.default:8000",
