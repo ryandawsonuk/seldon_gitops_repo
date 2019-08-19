@@ -1,0 +1,72 @@
+{
+    "apiVersion": "machinelearning.seldon.io/v1alpha2",
+    "kind": "SeldonDeployment",
+    "metadata": {
+        "labels": {
+            "app": "seldon"
+        },
+        "name": "income-classifier"
+    },
+    "spec": {
+        "name": "income-classifier",
+        "oauth_key": "oauth-key",
+        "oauth_secret": "oauth-secret",
+        "predictors": [
+            {
+                "componentSpecs": [{
+                    "spec": {
+                        "containers": [
+                            {
+                                "image": "seldonio/mock_income_classifier:0.2",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "income-classifier"
+                            }
+                        ],
+                        "terminationGracePeriodSeconds": 20
+                    },
+                    "metadata": {
+                       "creationTimestamp":"2019-01-02T15:04:05Z"
+                     }
+                }],
+                "graph": {
+                    "children": [],
+                    "name": "income-classifier",
+                    "type": "MODEL",
+                    "endpoint": {
+                        "type": "REST"
+                    },
+                    "parameters": [
+                        {
+                            "name": "model_filename",
+                            "value": "model.joblib",
+                            "type": "STRING"
+
+                        }
+                    ]
+                },
+                "svcOrchSpec": {
+                    "env": [
+                        {
+                            "name": "SELDON_LOG_MESSAGES_EXTERNALLY",
+                            "value": "true"
+                        },
+                        {
+                            "name": "SELDON_LOG_MESSAGE_TYPE",
+                            "value": "seldon.message.pair"
+                        },
+                        {
+                            "name": "SELDON_LOG_REQUESTS",
+                            "value": "false"
+                        },
+                        {
+                            "name": "SELDON_LOG_RESPONSES",
+                            "value": "false"
+                        }
+                    ]
+                },
+                "name": "income-classifier",
+                "replicas": 1
+            }
+        ]
+    }
+}
