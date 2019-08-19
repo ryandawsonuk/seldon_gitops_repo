@@ -4,9 +4,6 @@
     "metadata": {
         "name": "income-classifier",
         "namespace": "default",
-        "selfLink": "/apis/machinelearning.seldon.io/v1alpha2/namespaces/default/seldondeployments/income-classifier",
-        "uid": "0dbd04ca-c29e-11e9-9d00-42010a840200",
-        "generation": 1,
         "creationTimestamp": null,
         "labels": {
             "app": "seldon",
