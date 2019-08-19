@@ -4,6 +4,7 @@
     "metadata": {
         "name": "iris",
         "namespace": "default",
+        "resourceVersion": "1925727",
         "creationTimestamp": null
     },
     "spec": {
@@ -13,7 +14,13 @@
                 "name": "default",
                 "graph": {
                     "name": "iris-default",
+                    "type": "UNKNOWN_TYPE",
                     "implementation": "SKLEARN_SERVER",
+                    "endpoint": {
+                        "service_host": "localhost",
+                        "service_port": 9000,
+                        "type": "REST"
+                    },
                     "modelUri": "gs://seldon-models/sklearn/iris"
                 },
                 "componentSpecs": [
@@ -25,6 +32,7 @@
                             "containers": [
                                 {
                                     "name": "iris-default",
+                                    "image": "seldonio/sklearnserver_rest:0.1",
                                     "resources": {}
                                 }
                             ]
@@ -33,8 +41,53 @@
                 ],
                 "replicas": 1,
                 "engineResources": {},
+                "labels": {
+                    "version": "default"
+                },
                 "svcOrchSpec": {},
-                "traffic": 100,
+                "traffic": 90,
+                "explainer": {
+                    "containerSpec": {
+                        "name": "",
+                        "resources": {}
+                    }
+                }
+            },
+            {
+                "name": "canary",
+                "graph": {
+                    "name": "iris-canary",
+                    "implementation": "SKLEARN_SERVER",
+                    "modelUri": "gs://seldon-models/sklearn/iris"
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2019-08-19T16:07:07Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "iris-canary",
+                                    "resources": {
+                                        "limits": {
+                                            "cpu": "1",
+                                            "memory": "2Gi"
+                                        },
+                                        "requests": {
+                                            "cpu": "1",
+                                            "memory": "2Gi"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 10,
                 "explainer": {
                     "containerSpec": {
                         "name": "",
