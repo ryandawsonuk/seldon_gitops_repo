@@ -4,7 +4,10 @@
     "metadata": {
         "name": "income-classifier",
         "namespace": "default",
-        "creationTimestamp": null
+        "creationTimestamp": null,
+        "labels": {
+            "app.kubernetes.io/instance": "seldon-gitops-default"
+        }
     },
     "spec": {
         "name": "income-classifier",
@@ -13,7 +16,13 @@
                 "name": "default",
                 "graph": {
                     "name": "income-classifier-default",
+                    "type": "UNKNOWN_TYPE",
                     "implementation": "SKLEARN_SERVER",
+                    "endpoint": {
+                        "service_host": "localhost",
+                        "service_port": 9000,
+                        "type": "REST"
+                    },
                     "modelUri": "gs://seldon-models/sklearn/income/model"
                 },
                 "componentSpecs": [
@@ -25,6 +34,7 @@
                             "containers": [
                                 {
                                     "name": "income-classifier-default",
+                                    "image": "seldonio/sklearnserver_rest:0.1",
                                     "resources": {}
                                 }
                             ]
@@ -33,9 +43,14 @@
                 ],
                 "replicas": 1,
                 "engineResources": {},
+                "labels": {
+                    "version": "default"
+                },
                 "svcOrchSpec": {},
                 "traffic": 100,
                 "explainer": {
+                    "type": "ANCHOR_TABULAR",
+                    "modelUri": "gs://seldon-models/sklearn/income/explainer",
                     "containerSpec": {
                         "name": "",
                         "resources": {}
@@ -47,5 +62,24 @@
             "seldon.io/engine-seldon-log-messages-externally": "true"
         }
     },
-    "status": {}
+    "status": {
+        "state": "Available",
+        "deploymentStatus": {
+            "income-classifier-default-9e4ec4d": {
+                "replicas": 1,
+                "availableReplicas": 1
+            }
+        },
+        "serviceStatus": {
+            "income-classifier-income-classifier-default": {
+                "svcName": "income-classifier-income-classifier-default",
+                "httpEndpoint": "income-classifier-income-classifier-default.default:8000",
+                "grpcEndpoint": "income-classifier-income-classifier-default.default:5001"
+            },
+            "seldon-52e750837714e1f46c6f7b21871a5816": {
+                "svcName": "seldon-52e750837714e1f46c6f7b21871a5816",
+                "httpEndpoint": "seldon-52e750837714e1f46c6f7b21871a5816.default:9000"
+            }
+        }
+    }
 }
