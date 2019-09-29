@@ -62,33 +62,14 @@
                     "modelUri": "gs://seldon-models/sklearn/income/explainer",
                     "containerSpec": {
                         "name": "",
-                        "resources": {}
+                        "resources": {},
+                        "imagePullPolicy": "Always"
                     }
                 }
             }
         ],
         "annotations": {
             "seldon.io/engine-seldon-log-messages-externally": "true"
-        }
-    },
-    "status": {
-        "state": "Available",
-        "deploymentStatus": {
-            "income-classifier2-default-a365f17": {
-                "replicas": 1,
-                "availableReplicas": 1
-            }
-        },
-        "serviceStatus": {
-            "income-classifier2-income-classifier2-default": {
-                "svcName": "income-classifier2-income-classifier2-default",
-                "httpEndpoint": "income-classifier2-income-classifier2-default.default:8000",
-                "grpcEndpoint": "income-classifier2-income-classifier2-default.default:5001"
-            },
-            "seldon-8f55672d39d4156f0e90d59066ffc968": {
-                "svcName": "seldon-8f55672d39d4156f0e90d59066ffc968",
-                "httpEndpoint": "seldon-8f55672d39d4156f0e90d59066ffc968.default:9000"
-            }
         }
     }
 }
